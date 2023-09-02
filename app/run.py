@@ -43,6 +43,10 @@ QUESTION_LIST = [
 def check_prompts(nn: NeuroNetLibrary) -> None:
     """
     Функция проверяет наличие в базе необходимых промптов.
+    Args:
+        nn (NeuroNetLibrary): ...
+    Returns:
+        None
     """
     not_found = nn.has_records(
         *PROMPTS,

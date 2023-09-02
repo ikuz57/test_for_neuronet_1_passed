@@ -4,9 +4,17 @@ from neuro_voice_library import NeuroVoiceLibrary
 
 def hello(
     condition: str | None, nn: NeuroNetLibrary, nv: NeuroVoiceLibrary
-) -> tuple(str, str | None):
+) -> tuple[str, str | None]:
     """
-    Функция для обработки логики "hello".
+    Обрабатывает логику "hello".
+
+    Args:
+        condition (str | None): Текущее состояние разговора.
+        nn (NeuroNetLibrary): ...
+        nv (NeuroVoiceLibrary): ...
+
+    Returns:
+        tuple[str, str | None]: Действие и новое состояние разговора.
     """
     # Слушаем что нам говорят, останавливаемся если определяем сущности
     # "confirm, wrong_time, repeat"
@@ -51,9 +59,17 @@ def hello(
 
 def recommend(
     condition: str | None, nn: NeuroNetLibrary, nv: NeuroVoiceLibrary
-) -> tuple(str, str | None):
+) -> tuple[str, str | None]:
     """
-    Функция для обработки логики "recommend".
+    Обрабатывает логику "recommend".
+
+    Args:
+        condition (str | None): Текущее состояние разговора.
+        nn (NeuroNetLibrary): ...
+        nv (NeuroVoiceLibrary): ...
+
+    Returns:
+        tuple[str, str | None]: Действие и новое состояние разговора.
     """
     with nv.listen(
         "recommendation_score, recommendation, repeat, wrong_time, question",
@@ -123,7 +139,15 @@ def recommend(
 
 def hangup(condition: str, nn: NeuroNetLibrary, nv: NeuroVoiceLibrary) -> str:
     """
-    Обработка завершения звонка.
+    Обрабатывает завершение звонка.
+
+    Args:
+        condition (str): Результат разговора.
+        nn (NeuroNetLibrary): ...
+        nv (NeuroVoiceLibrary): ...
+
+    Returns:
+        str: Результат завершения разговора.
     """
     match condition:
         case "positive":
@@ -144,7 +168,14 @@ def hangup(condition: str, nn: NeuroNetLibrary, nv: NeuroVoiceLibrary) -> str:
 
 def forward(nn: NeuroNetLibrary, nv: NeuroVoiceLibrary) -> str:
     """
-    Функция перевода звонка на сотрудника.
+    Осуществляет перевод звонка на сотрудника.
+
+    Args:
+        nn (NeuroNetLibrary): ...
+        nv (NeuroVoiceLibrary): ...
+
+    Returns:
+        str: Результат перевода звонка.
     """
     nv.say("forward")
     nv.bridge(nn.env("OPERATOR_PHONE_NUMBER"))
