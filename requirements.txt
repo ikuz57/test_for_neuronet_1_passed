@@ -1,0 +1,3 @@
+python-dotenv
+neuro_net_library
+neuro_voice_library
